@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/js/web-motor.js}"></script>
+<title>Document</title>
+</head>
+<body>
+	<div id="main" class="container">
+		<h1 class="mt-2"></h1>
+		<div class="row">
+			<div class="col-md-12 " style="padding: 5px;">
+				<p id="success" class="alert alert-success" role="alert">
+					 Successfull!  <a href="#" class="alert-link"></a>
+				</p>
+				<div id="fail" class="alert alert-danger" role="alert">
+					Failed! <a href="#" class="alert-link">
+						</a>
+				</div>
+
+				<div class="card">
+					<div class="card-header">Add product</div>
+					<div class="card-body">
+						<div class="panel-body">
+							<form th:object="${motorbike}" id="motorbike"
+								name="motorbike"   enctype="multipart/form-data">
+
+								<div class="form-group">
+									<label for="txtInput">Hãng xe</label> <select 
+										class="form-control" id="automakerId" th:object="${automaker}">
+										<option th:each="a : ${automaker}" th:value="${a.id}"
+											th:text="${a.name}"></option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="txtInput">Loại xe</label> <select
+										class="form-control" id="categoryId" th:object="${category}">
+										<option th:each="c : ${category}" th:value="${c.id}"
+											th:text="${c.name}"></option>
+									</select>
+								</div>
+								<!--  itemValue="theloaiID" itemLabel="name"  th:field="${motorbike.category = category}" th:object="automaker"  th:object="${category}"-->
+								<div class="form-group">
+									<label class="required">Tên xe</label> <input
+										th:field="${motorbike.name}" id="nameMotorbike" name="name"
+										path="name" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label class="required">Chi tiết</label> <input
+										th:field="${motorbike.description}" id="description"
+										name="description" class="form-control" />
+								</div>
+
+								<div class="form-group">
+									<label class="required">Dung tích</label> <input
+										th:field="${motorbike.cc}" name="cc" id="cc"
+										class="form-control" />
+								</div>
+								  
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file" name="postImage"/>
+                                </div> <!-- ${motorbike.automaker.id},${motorbike.category.id},${motorbike.name},${motorbike.description},
+                                -->
+								<button id="createProduct" onclick="call.createProduct()"
+									type="submit" class="btn btn-secondary">
+									<i class="glyphicon glyphicon-floppy-save"></i>&nbsp;Save
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<h1 class="my-2"></h1>
+	</div>
+</body>
+</html>

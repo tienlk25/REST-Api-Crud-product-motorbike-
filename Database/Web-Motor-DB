@@ -1,0 +1,121 @@
+CREATE SCHEMA `web_motor` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_bin ;
+
+CREATE TABLE `web_motor`.`xemay` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `ten` VARCHAR(45) NOT NULL,
+  `hang_xe_id` INT NOT NULL,
+  `nam_sx` INT NOT NULL,
+  `cc` INT NOT NULL,
+  `kich_thuoc` VARCHAR(45) NOT NULL,
+  `trong_luong` VARCHAR(45) NOT NULL,
+  `loai_xe_id` INT NOT NULL,
+  `gia_tien` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_bin;
+
+CREATE TABLE `web_motor`.`motorbike` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` TEXT NOT NULL,
+  `automaker_id` INT NOT NULL,
+  `category_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_bin;
+
+CREATE TABLE `web_motor`.`automaker` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_bin;
+
+CREATE TABLE `web_motor`.`category` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_bin;
+
+
+CREATE TABLE `web_motor`.`image` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `path` VARCHAR(255) NOT NULL,
+  `mime` VARCHAR(45) NOT NULL,
+  `motorbike_id` INT NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_bin;
+
+ALTER TABLE `web_motor`.`motorbike` 
+ADD INDEX `category_idx` (`category_id` ASC) VISIBLE,
+ADD INDEX `automaker_idx` (`automaker_id` ASC) VISIBLE;
+;
+ALTER TABLE `web_motor`.`motorbike` 
+ADD CONSTRAINT `category`
+  FOREIGN KEY (`category_id`)
+  REFERENCES `web_motor`.`category` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `automaker`
+  FOREIGN KEY (`automaker_id`)
+  REFERENCES `web_motor`.`automaker` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+  CREATE TABLE `web_motor`.`color` (
+  `id` INT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_bin;
+  
+  
+  
+  
+  <form  th:object="${motorbike}" method="post">
+                          
+                                <div class="form-group">
+                                    <label for="txtInput">Hãng xe</label>
+                                    <select class="form-control" >
+                                        <option  th:each ="a : ${automaker}" th:value="${a.id}"  th:text="${a.name}" >  </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="txtInput">Loại xe</label>
+                                    <select class="form-control"  >
+                                        <option th:each ="c : ${category}"    th:value="${c.id}"  th:text="${c.name}" >  </option>
+                                    </select>
+                                </div> 
+                                <!--  itemValue="theloaiID" itemLabel="name"  th:field="${motorbike.category = category}" -->
+                                <div class="form-group">
+                                    <label class="required">Tên xe</label> 
+                                    <input th:field="${motorbike.name}" class="form-control" /> 
+                                </div>
+                                                            
+                                <div class="form-group">
+                                    <label class="required">Chi tiết</label> 
+                                    <input th:field="${motorbike.description}" class="form-control" /> 
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="required">Dung tích</label> 
+                                    <input th:field="${motorbike.cc}" class="form-control" /> 
+                                </div>
+                                <!--  
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file" name="postImage"/>
+                                </div>
+                                -->
+                                <button id="UpdateProduct" type="submit" class="btn btn-secondary"><i class="glyphicon glyphicon-floppy-save"></i>&nbsp;Save</button>
+                            </form>
