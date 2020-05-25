@@ -10,18 +10,19 @@ import com.tienlk25.entity.Options;
 public class OptionModelResponse {
 
 	private Integer id;
-	
 	private Integer product_id;
 	private String name;
 	private Integer position;
+	
 	List<String> values = new ArrayList<String>();
 	
-	public OptionModelResponse(Options options,Integer id) {
-		this.product_id = id;
+	public OptionModelResponse(Options options) {
+		this.id = options.getId();
+		this.product_id = options.getProductId();
 		this.name = options.getName();
 		this.position = options.getPosition();
+		
 	}
-	
 	
 	public void addValue(String value) {
 		if(value == null) {
@@ -29,7 +30,7 @@ public class OptionModelResponse {
 		}
 		this.values.add(value);
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

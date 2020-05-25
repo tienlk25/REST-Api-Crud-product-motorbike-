@@ -4,16 +4,23 @@ import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-
+import com.tienlk25.CustomValidation.annotation.IsExsistName;
+import com.tienlk25.CustomValidation.annotation.MotorbikeType;
 import com.tienlk25.entity.Motorbikes;
 
 
 public class ProductModelRequest {
 	private Integer id;
+	@NotNull(message = "Name of product must be not null")
+	//@IsExsistName
 	private String name;
+	@MotorbikeType
 	private String motorbikeType;
 	private String vendor;
+	private String tags;
+	
 	@Valid
 	private List<VariantModelRequest> variants;
 	
@@ -28,6 +35,8 @@ public class ProductModelRequest {
 			motorbikes.setCreateOn(date);
 		}if(motorbikes.getModifiedOn() != date) {
 			motorbikes.setModifiedOn(date);
+		}if(this.vendor != null) {
+			motorbikes.setTags(this.tags);
 		}
 	}
 	public String getName() {
@@ -60,6 +69,12 @@ public class ProductModelRequest {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getTags() {
+		return tags;
+	}
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 	
 }

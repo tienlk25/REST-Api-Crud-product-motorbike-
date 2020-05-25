@@ -18,7 +18,7 @@ public interface VariantRepository extends JpaRepository<Variants, Integer>{
 	@Query(value = "select p from Variants p where p.id = :id and p.status = :status")
 	Variants findByIdAndStatus(@Param("id") Integer id, @Param("status") Boolean status);
 	
-	@Query(value = "Update Variants set status = 0 where id = :id")
-    public void deleteStatus(@Param("id") Integer id);
+	@Query(value = "Update Variants set statu = :status where motorbikeId = :id")
+    public void updateStatusByIdProduct(@Param("id") Integer id, @Param("status") Boolean status);
 	
 }

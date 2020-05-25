@@ -39,7 +39,7 @@ public class Variants {
 	private String weightUnit;
 	
 	@Column(name = "create_on")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createOn;
 
 	@Column(name = "cc")
@@ -49,7 +49,8 @@ public class Variants {
 	private String warranty;
 	
 	@Column(name = "modified_on")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	//@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
 	private Date modifiedOn;
 	
  	@Column(name = "motorbike_id")

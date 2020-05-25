@@ -14,11 +14,12 @@ public interface OptionRepository extends JpaRepository<Options, Integer>{
 	@Query(value = "Select o from Options o where o.id = :id and o.status = :status")
     Options findByIdAndStatus(@Param("id") Integer id, @Param("status") Boolean status);
 	
-	@Query(value = "Update Options set status = 0 where id = :id")
-	void deleteStatus(@Param("id") Integer id);
 	
-	@Query(value = "select p from Options p where p.variantId = :id and p.status = :status")
-	List<Options> findAllOptionsByIdOfVarriant(@Param("id") Integer id, @Param("status") Boolean status);
+	@Query(value = "Update Options o set status = :status where o.productId = :id")
+	public void updateStatusByIdProduct(@Param("id") Integer id, @Param("status") Boolean status);
+	
+	@Query(value = "select p from Options p where p.productId = :id and p.status = :status")
+	List<Options> findAllOptionsByIdOfProduct(@Param("id") Integer id, @Param("status") Boolean status);
 
 
 }

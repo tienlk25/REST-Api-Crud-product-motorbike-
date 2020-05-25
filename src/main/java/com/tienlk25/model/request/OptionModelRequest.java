@@ -1,6 +1,7 @@
 package com.tienlk25.model.request;
 
 
+
 import org.springframework.validation.annotation.Validated;
 
 import com.tienlk25.entity.Options;
@@ -8,30 +9,22 @@ import com.tienlk25.entity.Options;
 @Validated
 public class OptionModelRequest {
 
+	final String NAME_VALUE_DEFAULFT = "Title";
 	private Integer id;
 	private String name;
 	private String value;
 
-	public void setDefaultOption(Options options, Integer id) {
-		options.setName("Title");
-		options.setValue("Default Title");
+	public void setDefaultOption(Options options) {
+		options.setName(NAME_VALUE_DEFAULFT);
 		options.setPosition(1);
-		options.setVariantId(id);
 		options.setStatus(true);
 	}
 
-	public void setOption(Options options, Integer id) {
-		if (this.name != null) {
+	public void setOption(Options options) {
+		//if (this.name != null) {
 			options.setName(this.name);
-		}
-		if(this.value != null) {
-			options.setValue(this.value);
-		}
-		if(options.getId() == null) {
-			options.setVariantId(id);
-		}if(options.getStatus() == null) {
-			options.setStatus(true);
-		}
+		//}
+		options.setStatus(true);
 		
 	}
 

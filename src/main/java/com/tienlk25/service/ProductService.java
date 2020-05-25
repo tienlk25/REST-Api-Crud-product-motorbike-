@@ -17,8 +17,8 @@ public interface ProductService {
 	ProductModelResponse getProductModelById(Integer id);
 	
 	ProductModelResponse getProductModelByProduct(Motorbikes motorbikes);
-	ProductModelResponse updateProduct(ProductModelRequest motorbikeModel) throws Exception;
-    ProductModelResponse saveProduct(ProductModelRequest motorbikeModel) throws Exception;
+	ProductModelResponse updateProduct(ProductModelRequest motorbikeModel);
+    ProductModelResponse saveProduct(ProductModelRequest motorbikeModel);
 	
 	boolean updateStatus(Integer id);
 //	VariantModelResponse getVariantModelByVariant(Variants variant, List<Options> option);

@@ -8,36 +8,46 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
-
+import com.tienlk25.CustomValidation.annotation.OptionDuplicated;
+import com.tienlk25.CustomValidation.annotation.WeightUnit;
 import com.tienlk25.entity.Variants;
 
 public class VariantModelRequest {
 
+	final String TITLE_DEFAULFT = "Sự lựa chọn hoàn hảo";
+	final BigDecimal PRICE_DEFAULFT = new BigDecimal("0");
+	final Integer POSOTION_DEFAULFT = 1;
+	final Integer WEIGHT_DEFAULFT = 120;
+	final String WEIGHTUNIT_DEFAULFT = "kg";
+	final Integer CC_DEFAULFT = 125;
+	final String WARRANTY_DEFAULFT = "3 năm / 30000 km (tuỳ điều kiện nào đến trước)";
+	
 	private Integer id;
 	private String title;
-	@Min(value = 30000000)
+	
 	private BigDecimal price;
-	private Integer position;
 	private Integer weight;
+	@WeightUnit
 	private String weightUnit;
 	@Min(value = 125)
 	private Integer cc;
 	private String warranty;
 	@Size(min = 0,max = 3,message = "List Option must be between 0 and 3 characters")
 	@Valid
+	@OptionDuplicated
 	private List<OptionModelRequest> options;
 	
 	public void setDefaultVariant(Variants variants, Date date ,Integer id) {
-		variants.setTitle("Sự lựa chọn hoàn hảo");
-		variants.setPrice(new BigDecimal("30000000"));
+		variants.setTitle(TITLE_DEFAULFT);
+		variants.setPrice(PRICE_DEFAULFT);
         variants.setStatus(true);
-		variants.setPosition(1);
-		variants.setWeight(120);
-		variants.setWeightUnit("kg");
+		variants.setPosition(POSOTION_DEFAULFT);
+		variants.setWeight(WEIGHT_DEFAULFT);
+		variants.setWeightUnit(WEIGHTUNIT_DEFAULFT);
 		variants.setCreateOn(date);
 		variants.setModifiedOn(date);
-		variants.setCc(125);
-        variants.setWarranty("3 năm / 30000 km (tuỳ điều kiện nào đến trước)");
+		variants.setCc(CC_DEFAULFT);
+        variants.setWarranty(WARRANTY_DEFAULFT);
 		variants.setMotorbikeId(id);
 	}
 	
@@ -50,6 +60,9 @@ public class VariantModelRequest {
 			 variants.setTitle(this.title);
 		}if(this.price != null) {
 			 variants.setPrice(this.price);
+			 if(variants.getPrice() == null) {
+				 variants.setPrice(new BigDecimal("0"));
+			 }
 		}if(this.weight != null) {
 			variants.setWeight(this.weight);
 		}if(this.weightUnit != null) {
@@ -84,12 +97,7 @@ public class VariantModelRequest {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	public int getPosition() {
-		return position;
-	}
-	public void setPosition(int position) {
-		this.position = position;
-	}
+	
 	
 	public Integer getWeight() {
 		return weight;
@@ -99,9 +107,7 @@ public class VariantModelRequest {
 		this.weight = weight;
 	}
 
-	public void setPosition(Integer position) {
-		this.position = position;
-	}
+	
 
 	public String getWeightUnit() {
 		return weightUnit;

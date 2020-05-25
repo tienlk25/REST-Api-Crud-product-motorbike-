@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.tienlk25.CustomValidation.annotation.MotorbikeType;
 import com.tienlk25.entity.Motorbikes;
 
 public class ProductModelResponse {
@@ -12,9 +13,10 @@ public class ProductModelResponse {
 	private String name;
 	private String motorbikeType;
 	private String vendor;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
+	private String tags;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createOn;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
 	private List<VariantModelResponse> variants;
 	private List<OptionModelResponse> options;
@@ -29,6 +31,7 @@ public class ProductModelResponse {
 		this.modifiedOn = motorbikes.getModifiedOn();
 		this.variants = variantModels;
 		this.options = optionModels;
+		this.tags = motorbikes.getTags();
 	}
 	
 	public Integer getId() {
@@ -80,7 +83,12 @@ public class ProductModelResponse {
 	public void setOptions(List<OptionModelResponse> options) {
 		this.options = options;
 	}
-	
-	
-	
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 }

@@ -11,8 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
-
 //@EnableJpaAuditing
 public class WebMotorApplication implements CommandLineRunner{
  
@@ -25,5 +23,4 @@ public class WebMotorApplication implements CommandLineRunner{
 		System.out.println("============= T I E N L K 2 5 =============");
 		
 	}
-
 }

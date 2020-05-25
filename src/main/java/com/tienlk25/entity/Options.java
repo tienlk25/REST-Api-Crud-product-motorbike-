@@ -26,23 +26,12 @@ public class Options {
 	@Column(name = "position")
 	private Integer position;
 
-	@Column(name = "variant_id")
-	private Integer variantId;
-
+	@Column(name = "product_id")
+	private Integer productId;
+	
 	@Column(name = "status")
 	private Boolean status;
 	
-	@Column(name = "value")
-	private String value;
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
 	public Integer getPosition() {
 		return position;
 	}
@@ -82,29 +71,24 @@ public class Options {
 		return name;
 	}
 
-	public void setVariantId(Integer variantId) {
-		this.variantId = variantId;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Integer getVariantId() {
-		return variantId;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-
-
+	
 }

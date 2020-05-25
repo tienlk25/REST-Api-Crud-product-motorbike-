@@ -30,9 +30,11 @@ public class Motorbikes {
 	private String vendor;
  	
 	@Column(name = "create_on")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createOn;
 	
+	@Column(name = "tags")
+	private String tags;
 	public Integer getId() {
 		return id;
 	}
@@ -93,10 +95,15 @@ public class Motorbikes {
 	private Boolean status;
 	
 	@Column(name = "modified_on")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd@hh:mm:ss.sssz")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifiedOn;
-	
-	
-	
+	public String getTags() {
+		return tags;
+	}
 
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	
+	
 }
